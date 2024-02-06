@@ -1,5 +1,6 @@
 let String = "This is a String";
 import substrMethod from "./Substring.js";
+import splitMethod from "./SplitMethod.js";
 
 
 
@@ -55,9 +56,12 @@ const trimStart = (str) => {
 
 // reverse String
 const reverseString = (str)=>{
-    let arr = str.split('');
+    let arr = splitMethod(str, '');
     return (arr.reverse().join(''))
 }
+
+// console.log(reverseString('This is a string'))
+// output => gnirts a si sihT
 
 
 
@@ -185,29 +189,3 @@ const replaceAll = (str, word1, word2) => {
 }
 // console.log(replaceAll("Strisgisisis", 'is', 'at'))
 // output => Stratgatatat
-
-
-
-
-
-// Split();
-const splitMethod = (string, splitChar) => {
-    let newArr = [];
-    let newStr = "";
-    for (let value of string) {
-        if (!splitChar.length) {
-            newArr.push(value);
-        } else {
-            if (value != splitChar) {
-                newStr += value
-            } else {
-                newArr.push(newStr);
-                newStr = ""
-            }
-        }
-    }
-    newStr.length && newArr.push(newStr);
-    return newArr;
-}
-// console.log(splitMethod('this is a demo text', ' '))
-// output => [ 'this', 'is', 'a', 'demo', 'text' ]
