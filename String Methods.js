@@ -1,10 +1,13 @@
 let String = "This is a String";
+import substrMethod from "./Substring.js";
+
+
 
 // Slice
 function sliceString(str, start_index, end_index) {
     let newString = "";
     let isSlicing = false;
-    if (str.length - 1 >= end_index && start_index < end_index) {
+    if (((str.length - 1) >= end_index) && (start_index < end_index)) {
         for (let index in str) {
             if (index == start_index) {
                 isSlicing = true;
@@ -22,52 +25,14 @@ function sliceString(str, start_index, end_index) {
     return newString;
 }
 
-console.log("Sliced string: ", sliceString(String, 2, 5));
+// console.log(sliceString(String, 2, 5));
+// output => is
 
 
 
-// substr()
 
-function substrMethod(str, fromIndex, length) {
-    let isSlicing = false;
-    let lastIndex = str.length - 1;
-    let start_index;
-    (fromIndex < 0) && (start_index = lastIndex + fromIndex);
-    end_index = length ? fromIndex + length : str.length - 1;
-    let newString = "";
-
-    if (lastIndex >= end_index && start_index < end_index) {
-        for (let index in str) {
-            if (fromIndex < 0) {
-                if (isSlicing) {
-                    newString += str[index]
-                }
-            }
-            if (index == start_index) {
-                isSlicing = true;
-            }
-            if (index == end_index && end_index != str.length - 1) {
-                isSlicing = false;
-            }
-            if (fromIndex > 0) {
-                if (isSlicing) {
-                    newString += str[index]
-                }
-            }
-        }
-    } else {
-        return "Invalid Indexes"
-    }
-    return newString;
-}
-
-console.log(substrMethod(String, -5));
-
-
-
-// trim
-
-const trimString = (str) => {
+// trim start
+const trimStart = (str) => {
     let trimmedString = "";
     let trim_start = false;
     for (let i = 0; i < str.length; i++) {
@@ -81,11 +46,54 @@ const trimString = (str) => {
     return trimmedString;
 }
 
-console.log(trimString("           it's a String."))
+// console.log(trimStart("           it's a String."))
+// output => is's a string
+
+
+
+
+
+// reverse String
+const reverseString = (str)=>{
+    let arr = str.split('');
+    return (arr.reverse().join(''))
+}
+
+
+
+// trim end
+const trimEnd = (str) => {
+    let trimmedString = "";
+    let trim_end = false;
+    for (let i = str.length-1; i >= 0; i--) {
+        if (str[i] == " " && !trim_end) {
+            continue
+        } else {
+            trim_end = true;
+            trimmedString += str[i];
+        }
+    }
+    return reverseString(trimmedString);
+}
+// console.log(trimEnd("           it's a String.          "))
+// output => is's a string
+
+
+
+
+// trim
+const trim = (str) =>{
+    let newStr = trimStart(str);
+    newStr = trimEnd(newStr);
+    return newStr;
+}
+// console.log(trim('       123123121      231    '))
+// output => 123123121     231
+
+
 
 
 // padStart
-
 const padStart = (str, minPadding, number) => {
     str = str.toString();
     let numberCount = (minPadding - str.length) < 0 ? 0 : minPadding - str.length;
@@ -97,8 +105,12 @@ const padStart = (str, minPadding, number) => {
     }
     return numbers + str;
 }
+// console.log(padStart("34", 6, 2)); 
+// output => "22234"
 
-console.log(padStart("34", 6, 2)); // returns "22234"
+
+
+
 
 // padEnd
 const padEnd = (str, minPadding, number) => {
@@ -112,23 +124,90 @@ const padEnd = (str, minPadding, number) => {
     }
     return str + numbers;
 }
+// console.log(padEnd("34", 6, 2)); 
+// output => "34222"
 
-console.log(padEnd("34", 6, 2)); // returns "22234"
+
 
 
 
 // Repeat
 const repeat = (string, num) => {
     let newString = "";
-    for(let i=0; i<num;i++){
-        newString+=string;
+    for (let i = 0; i < num; i++) {
+        newString += string;
     }
     return newString;
 }
+// console.log(repeat(String, 4));
+// output => This is a StringThis is a StringThis is a StringThis is a String
 
-console.log(repeat(String, 4));
+
+
+
 
 // Replace, only the first 
-const replace = (word1, word2)=>{
-
+const replace = (str, word1, word2) => {
+    let newString = "";
+    let changed = false;
+    for (let i = 0; i < str.length; i++) {
+        if (!changed) {
+            if (substrMethod(str, i, word1.length) == word1) {
+                newString += word2;
+                i = i + word1.length - 1;
+                changed = true
+            } else {
+                newString += str[i];
+            }
+        } else {
+            newString += str[i];
+        }
+    } return newString;
 }
+// console.log(replace("Strisg", 'is', 'at'))
+// output => Stratg
+
+
+
+
+
+// Replace all
+const replaceAll = (str, word1, word2) => {
+    let newString = "";
+    for (let i = 0; i < str.length; i++) {
+        if (substrMethod(str, i, word1.length) == word1) {
+            newString += word2;
+            i = i + word1.length - 1;
+        } else {
+            newString += str[i];
+        }
+    } return newString;
+}
+// console.log(replaceAll("Strisgisisis", 'is', 'at'))
+// output => Stratgatatat
+
+
+
+
+
+// Split();
+const splitMethod = (string, splitChar) => {
+    let newArr = [];
+    let newStr = "";
+    for (let value of string) {
+        if (!splitChar.length) {
+            newArr.push(value);
+        } else {
+            if (value != splitChar) {
+                newStr += value
+            } else {
+                newArr.push(newStr);
+                newStr = ""
+            }
+        }
+    }
+    newStr.length && newArr.push(newStr);
+    return newArr;
+}
+// console.log(splitMethod('this is a demo text', ' '))
+// output => [ 'this', 'is', 'a', 'demo', 'text' ]
