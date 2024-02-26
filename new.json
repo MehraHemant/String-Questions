@@ -1,0 +1,51 @@
+{
+  "taskList": [
+    {
+      "title": "string",
+      "description": "string",
+      "category": "CALL",
+      "priority": "HIGH",
+      "startDate": "string",
+      "endDate": "string",
+      "checkList": ["Checklist1", "Checklist2", "Checklist3"],
+      "assignees": [],
+      "isCompleted": true,
+      "referenceId": "p5ts430muo0b",
+      "reference": "OPPORTUNITY",
+      "stage": "PROSPECT",
+      "action": "CREATE"
+    },
+    {
+      "title": "string",
+      "description": "string",
+      "category": "CALL",
+      "priority": "HIGH",
+      "startDate": "string",
+      "endDate": "string",
+      "checkList": ["Checklist1", "Checklist2", "Checklist3"],
+      "assignees": [],
+      "isCompleted": true,
+      "referenceId": "p5ts430muo0b",
+      "reference": "OPPORTUNITY",
+      "stage": "PROSPECT",
+      "action": "DELETE",
+      "taskId": "litnlp8ihw0q"
+    },
+    {
+      "title": "UPDATED",
+      "description": "string",
+      "category": "CALL",
+      "priority": "HIGH",
+      "startDate": "string",
+      "endDate": "string",
+      "checkList": ["Checklist1", "Checklist2", "Checklist3"],
+      "assignees": [],
+      "isCompleted": true,
+      "referenceId": "p5ts430muo0b",
+      "reference": "OPPORTUNITY",
+      "stage": "PROSPECT",
+      "action": "UPDATE",
+      "taskId": "x69t1bcko9am"
+    }
+  ]
+}
